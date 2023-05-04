@@ -28,5 +28,8 @@ void main(List<String> args) {
       university +
       ' and his number ' +
       universityNumber.toString());
-  print(course);
+  
+  print("$name's university $university and number is $universityNumber");
+  print("'$course' is ${course.length} character");
+
 }
