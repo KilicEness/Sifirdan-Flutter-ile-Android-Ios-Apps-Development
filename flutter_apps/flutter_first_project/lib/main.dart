@@ -6,19 +6,71 @@ void main() {
 
 // ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
+  Container createContainer(String word, Color colour, {double margin = 0}) {
+    return Container(
+      width: 75,
+      height: 75,
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(top: margin),
+      color: colour,
+      child: Text(
+        word,
+        style: const TextStyle(fontSize: 48),
+      ),
+    );
+  }
+
+  Row createDartRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        createContainer('D', Colors.orange),
+        createContainer('A', Colors.orange.shade300),
+        createContainer('R', Colors.orange.shade200),
+        createContainer('T', Colors.orange.shade100),
+      ],
+    );
+  }
+
+  Column createTrainColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          child: createContainer('R', Colors.orange.shade200, margin: 30),
+        ),
+        Expanded(
+          child: createContainer('A', Colors.orange.shade300, margin: 30),
+        ),
+        Expanded(
+          child: createContainer('I', Colors.orange.shade400, margin: 30),
+        ),
+        Expanded(
+          child: createContainer('N', Colors.orange, margin: 30),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Title'),
-          backgroundColor: Colors.red,
+          title: const Text('Flutter Training'),
+          backgroundColor: Colors.cyan,
         ),
         // ignore: avoid_unnecessary_containers
         body: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children:issuedContainer,
+          color: Colors.white30,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              createDartRow(),
+              Expanded(
+                child: createTrainColumn(),
+              ),
+            ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
