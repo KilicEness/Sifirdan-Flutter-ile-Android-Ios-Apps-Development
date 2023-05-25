@@ -14,44 +14,11 @@ class MyApp extends StatelessWidget {
           title: const Text('Title'),
           backgroundColor: Colors.red,
         ),
+        // ignore: avoid_unnecessary_containers
         body: Container(
-          color: Colors.blue,
-          child: const Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('E'),
-                  Text('N'),
-                  Text('E'),
-                  Text('S'),
-                ],
-              ),
-              Icon(
-                Icons.add_alert_sharp,
-                size: 64,
-                color: Colors.white,
-              ),
-              Icon(
-                Icons.add_alert_sharp,
-                size: 64,
-                color: Colors.yellow,
-              ),
-              Icon(
-                Icons.add_alert_sharp,
-                size: 64,
-                color: Colors.green,
-              ),
-              Icon(
-                Icons.add_alert_sharp,
-                size: 64,
-                color: Colors.purple,
-              ),
-            ],
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children:issuedContainer,
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -66,6 +33,111 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> get issuedContainer {
+    return [
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.yellow,
+      ),
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.blue,
+      ),
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.orange,
+      ),
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.red,
+      ),
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.blue,
+      ),
+      Container(
+        width: 75,
+        height: 75,
+        color: Colors.yellow,
+      ),
+    ];
+  }
+
+  List<Widget> get flexibleContainer {
+    return [
+      Flexible(
+        child: Container(
+          width: 300,
+          height: 300,
+          color: Colors.yellow,
+        ),
+      ),
+      Flexible(
+        child: Container(
+          width: 300,
+          height: 300,
+          color: Colors.blue,
+        ),
+      ),
+      Flexible(
+        child: Container(
+          width: 300,
+          height: 300,
+          color: Colors.purple,
+        ),
+      ),
+      Flexible(
+        child: Container(
+          width: 300,
+          height: 300,
+          color: Colors.orange,
+        ),
+      ),
+    ];
+  }
+
+  List<Widget> get expandedContainer {
+    return [
+      Expanded(
+        flex: 2,
+        child: Container(
+          width: 75,
+          height: 75,
+          color: Colors.yellow,
+        ),
+      ),
+      Expanded(
+        flex: 2,
+        child: Container(
+          width: 75,
+          height: 75,
+          color: Colors.blue,
+        ),
+      ),
+      Expanded(
+        flex: 1,
+        child: Container(
+          width: 75,
+          height: 75,
+          color: Colors.red,
+        ),
+      ),
+      Expanded(
+        flex: 3,
+        child: Container(
+          width: 75,
+          height: 75,
+          color: Colors.orange,
+        ),
+      ),
+    ];
   }
 
   Widget containerTraining() {
