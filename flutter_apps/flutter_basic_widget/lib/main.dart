@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic_widget/dropdown_button.dart';
+import 'package:flutter_basic_widget/popupmenu_usage.dart';
 
 void main() {
   debugPrint('main method run');
@@ -25,9 +25,10 @@ class MyApp extends StatelessWidget {
           )),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Button Examples'),
+          title: const Text('Button Examples'),
+          actions: [PopupmenuUsage()],
         ),
-        body: DropDownButtonUsage(),
+        body: PopupmenuUsage(),
       ),
     );
   }
