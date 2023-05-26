@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic_widget/image_widgets.dart';
+import 'package:flutter_basic_widget/my_counter_page.dart';
 
 void main() {
   debugPrint('main method run');
@@ -14,64 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'My Counter App',
       theme: ThemeData(primarySwatch: Colors.teal),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    debugPrint('myhomepage build run');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('My Counter App'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Image Examples'),
+        ),
+        body: ImageExamples(),
       ),
-      body: Center(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          MyNewTextWidget(),
-          Text(
-            _counter.toString(),
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        ]),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('button clicked and count is $_counter');
-          increaseCounter();
-        },
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-
-  void increaseCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-}
-
-class MyNewTextWidget extends StatelessWidget {
-  const MyNewTextWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Pushing button time',
-      style: TextStyle(fontSize: 24),
     );
   }
 }
