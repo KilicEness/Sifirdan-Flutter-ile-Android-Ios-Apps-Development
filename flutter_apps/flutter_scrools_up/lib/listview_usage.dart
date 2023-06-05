@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+// ignore: must_be_immutable
 class ListViewUsage extends StatelessWidget {
   ListViewUsage({super.key});
 
@@ -15,17 +17,63 @@ class ListViewUsage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Student List'),
       ),
-      body: ListView(
-        children: allStudents
-            .map((Student std) => ListTile(
-                  title: Text(std.name),
-                  subtitle: Text(std.surname),
-                  leading: CircleAvatar(
-                    child: Text(std.id.toString()),
+      body: buildListViewSeparated(),
+    );
+  }
+
+  ListView buildListViewSeparated() {
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index) {
+        var currentStudent = allStudents[index];
+        return Card(
+          color: index % 2 == 0 ? Colors.red.shade100 : Colors.purple.shade100,
+          child: ListTile(
+            onTap: () {
+              if (index % 2 == 0) {
+                EasyLoading.instance.backgroundColor = Colors.red;
+              } else {
+                EasyLoading.instance.backgroundColor = Colors.blue;
+              }
+              EasyLoading.showToast('Element clicked',
+                  duration: Duration(
+                    seconds: 3,
                   ),
-                ))
-            .toList(),
-      ),
+                  dismissOnTap: true,
+                  toastPosition: EasyLoadingToastPosition.bottom);
+            },
+            title: Text(currentStudent.name),
+            subtitle: Text(currentStudent.surname),
+            leading: CircleAvatar(
+              child: Text(currentStudent.id.toString()),
+            ),
+          ),
+        );
+      },
+      itemCount: allStudents.length,
+      separatorBuilder: (context, index) {
+        var newIndex = index + 1;
+        if (newIndex % 4 == 0) {
+          return Divider(
+            thickness: 2,
+            color: Colors.teal,
+          );
+        }
+        return SizedBox();
+      },
+    );
+  }
+
+  ListView classicListView() {
+    return ListView(
+      children: allStudents
+          .map((Student std) => ListTile(
+                title: Text(std.name),
+                subtitle: Text(std.surname),
+                leading: CircleAvatar(
+                  child: Text(std.id.toString()),
+                ),
+              ))
+          .toList(),
     );
   }
 }
