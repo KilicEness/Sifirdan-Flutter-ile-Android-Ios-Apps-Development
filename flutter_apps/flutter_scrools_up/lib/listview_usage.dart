@@ -41,6 +41,9 @@ class ListViewUsage extends StatelessWidget {
                   dismissOnTap: true,
                   toastPosition: EasyLoadingToastPosition.bottom);
             },
+            onLongPress: () {
+              _alertDialogOperations(context, currentStudent);
+            },
             title: Text(currentStudent.name),
             subtitle: Text(currentStudent.surname),
             leading: CircleAvatar(
@@ -76,6 +79,39 @@ class ListViewUsage extends StatelessWidget {
           .toList(),
     );
   }
+
+  void _alertDialogOperations(BuildContext myContext, Student choosen) {
+    showDialog(
+        context: myContext,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(choosen.toString()),
+            content: SingleChildScrollView(
+              child: ListBody(children: [
+                Text('enes' * 100),
+                Text('enes1' * 100),
+                Text('enes2' * 100),
+              ]),
+            ),
+            actions: [
+              ButtonBar(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('CLOSE'),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('OK'),
+                  ),
+                ],
+              )
+            ],
+          );
+        });
+  }
 }
 
 class Student {
@@ -84,4 +120,9 @@ class Student {
   final String surname;
 
   Student(this.id, this.name, this.surname);
+
+  @override
+  String toString() {
+    return 'Name:$name, Surname:$surname, id:$id';
+  }
 }
